@@ -1,3 +1,7 @@
+/**
+ * Controls the Adafruit Alphanumeric display
+ */
+//% color=coral icon="\uf06e"
 namespace alphanum {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
@@ -64,7 +68,7 @@ namespace alphanum {
 
     //% blockId=alphanum_clear_display
     //% block = "Clear the display"
-    function clear_display(): void {
+    export function clear_display(): void {
         for (let index = 0; index <= 16; index++) {
             buffer[index] = 0
         }
@@ -72,7 +76,7 @@ namespace alphanum {
 
     //% blockId=alphanum_set_character
     //% block = "Set an alphanumeric character at position"
-    function set_character(position: number, character: string):void {
+    export function set_character(position: number, character: string):void {
         write_raw(position, chars[character])
     }
 }
