@@ -24,7 +24,6 @@ namespace alphanum {
     /**
      * Alphanumeric LED Display
      */
-
     //% blockId=initialise_set_i2c_address
     //% block = "Set the i2c address"
     export function set_i2c_address(i2cAddress: number): void {
@@ -58,9 +57,12 @@ namespace alphanum {
         )
     }
 
+    /**
+     * AWrite raw bits to turn on individual segments
+     */
     //% blockId=alphanum_write_raw
-    //% block = "Write raw bits at position"
-    //% position.min = 0 position.max=3
+    //% block = "Write raw bits $bitmask at $position"
+    //% position.min=0 position.max=3
     export function write_raw(position: number, bitmask: number): void {
         buffer[1 + position * 2] = bitmask & 0xff
         buffer[1 + position * 2 + 1] = (bitmask >> 8) & 0xff
@@ -81,8 +83,8 @@ namespace alphanum {
     }
 
     //% blockId=alphanum_set_character
-    //% block = "Set an alphanumeric character at position"
-    //% position.min = 0 position.max=3
+    //% block = "Set an alphanumeric character at $position"
+    //% position.min=0 position.max=3
     export function set_character(position: number, character: string): void {
         write_raw(position, chars[character])
     }
