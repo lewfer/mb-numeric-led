@@ -1,3 +1,7 @@
+/**
+ * Controls the Adafruit Alphanumeric display
+ */
+//% color="#dc4a26" icon="\uf06e"
 namespace alphanum {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
