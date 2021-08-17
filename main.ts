@@ -1,7 +1,7 @@
 /**
  * Controls the Adafruit Alphanumeric display
  */
-//% color=coral icon="\uf06e"
+//% color="#dc4a26" icon="\uf06e"
 namespace alphanum {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
@@ -14,7 +14,7 @@ namespace alphanum {
     let HT16K33_OSCILLATOR = 0x01
     let HT16K33_CMD_BRIGHTNESS = 0xE0
 
-    let usedi2cAddress : number;
+    let usedi2cAddress: number = DEFAULT_ADDRESS;
 
     let buffer = pins.createBuffer(17);
 
@@ -25,10 +25,15 @@ namespace alphanum {
      * Alphanumeric LED Display
      */
 
+    //% blockId=initialise_set_i2c_address
+    //% block = "Set the i2c address"
+    export function set_i2c_address(i2cAddress: number): void {
+        usedi2cAddress = i2cAddress
+    }
+
     //% blockId=initialise_alphanumeric
     //% block = "Initialse the display"
-    export function initialise_alphanumeric(i2cAddress = DEFAULT_ADDRESS): void {
-        usedi2cAddress = i2cAddress
+    export function initialise_alphanumeric(): void {
 
         // Init
         pins.i2cWriteNumber(
@@ -76,7 +81,17 @@ namespace alphanum {
 
     //% blockId=alphanum_set_character
     //% block = "Set an alphanumeric character at position"
-    export function set_character(position: number, character: string):void {
+    export function set_character(position: number, character: string): void {
         write_raw(position, chars[character])
+    }
+
+    //% blockId=alphanum_set_string
+    //% block = "Set an alphanumeric string on the display (4 characters)"
+    export function set_string(character: string): void {
+        write_raw(0, chars[character.charAt(0)])
+        write_raw(1, chars[character.charAt(1)])
+        write_raw(2, chars[character.charAt(2)])
+        write_raw(3, chars[character.charAt(3)])
+
     }
 }
