@@ -16,7 +16,7 @@ namespace alphanum {
      * Alphanumeric LED Display
      */
 
-    //% blockId=alphanum
+    //% blockId=initialise_alphanumeric
     //% block = "Initialse the display"
     export function initialise_alphanumeric(i2cAddress = DEFAULT_ADDRESS): void {
         // Init
@@ -42,14 +42,14 @@ namespace alphanum {
         )
     }
 
-    //% blockId=alphanum
+    //% blockId=alphanum_write_raw
     //% block = "Write raw bits"
     export function write_raw(pos: number, bitmask: number): void {
         buffer[1 + pos * 2] = bitmask & 0xff
         buffer[1 + pos * 2 + 1] = (bitmask >> 8) & 0xff
     }
 
-    //% blockId=alphanum
+    //% blockId=alphanum_update_display
     //% block = "Update the display"
     export function update_display(): void {
         pins.i2cWriteBuffer(112, buffer, false)
