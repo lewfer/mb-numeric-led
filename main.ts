@@ -1,7 +1,3 @@
-/**
- * Controls the Adafruit Alphanumeric display
- */
-//% color="#dc4a26" icon="\uf06e"
 namespace alphanum {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
@@ -60,6 +56,7 @@ namespace alphanum {
 
     //% blockId=alphanum_write_raw
     //% block = "Write raw bits at position"
+    //% position.min = 0 position.max=3
     export function write_raw(position: number, bitmask: number): void {
         buffer[1 + position * 2] = bitmask & 0xff
         buffer[1 + position * 2 + 1] = (bitmask >> 8) & 0xff
@@ -81,6 +78,7 @@ namespace alphanum {
 
     //% blockId=alphanum_set_character
     //% block = "Set an alphanumeric character at position"
+    //% position.min = 0 position.max=3
     export function set_character(position: number, character: string): void {
         write_raw(position, chars[character])
     }
