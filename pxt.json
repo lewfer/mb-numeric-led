@@ -1,5 +1,5 @@
 {
-    "name": "tcl-mb-alphanum-display",
+    "name": "tcl-mb-segment-led-display",
     "description": "",
     "dependencies": {
         "core": "*",

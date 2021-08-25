@@ -1,8 +1,8 @@
 /**
  * Controls the Adafruit 7-segment and 14-segment numeric/character led displays
  */
-//% color="coral" icon="\uf06e"
-namespace alphanum {
+//% color="#ff7f50" icon="\uf06e" block="Segment LED"
+namespace segment_led {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
     let HT16K33_BLINK_DISPLAYON = 0x01
@@ -26,13 +26,13 @@ namespace alphanum {
      * Segment LED Display
      */
     //% blockId=initialise_set_i2c_address
-    //% block = "Set the i2c address"
+    //% block="set i2c address %i2cAddress"
     export function set_i2c_address(i2cAddress: number): void {
         usedi2cAddress = i2cAddress
     }
 
     //% blockId=initialise led_display
-    //% block = "Initialse the display"
+    //% block="initialse led display"
     export function initialise_led_display(): void {
 
         // Init
@@ -62,21 +62,21 @@ namespace alphanum {
      * AWrite raw bits to turn on individual segments
      */
     //% blockId=alphanum_write_raw
-    //% block = "Write raw bits $bitmask at $position"
+    //% block="write raw %bitmask at %position"
     //% position.min=0 position.max=3
-    export function write_raw(position: number, bitmask: number): void {
+    export function write_raw(bitmask: number, position: number): void {
         buffer[1 + position * 2] = bitmask & 0xff
         buffer[1 + position * 2 + 1] = (bitmask >> 8) & 0xff
     }
 
     //% blockId=alphanum_update_display
-    //% block = "Update the display"
+    //% block="update display"
     export function update_display(): void {
         pins.i2cWriteBuffer(usedi2cAddress, buffer, false)
     }
 
     //% blockId=alphanum_clear_display
-    //% block = "Clear the display"
+    //% block="clear display"
     export function clear_display(): void {
         for (let index = 0; index <= 16; index++) {
             buffer[index] = 0
@@ -84,14 +84,14 @@ namespace alphanum {
     }
 
     //% blockId=alphanum_set_character
-    //% block = "Set an alphanumeric character at $position"
+    //% block="set character %character at %position"
     //% position.min=0 position.max=3
-    export function set_character(position: number, character: string): void {
+    export function set_character(character: string, position: number): void {
         write_raw(position, chars[character])
     }
 
     //% blockId=alphanum_set_string
-    //% block = "Set an alphanumeric string on the display (4 characters)"
+    //% block="set string %characters"
     export function set_string(character: string): void {
         write_raw(0, chars[character.charAt(0)])
         write_raw(1, chars[character.charAt(1)])
@@ -101,9 +101,9 @@ namespace alphanum {
     }
 
     //% blockId=alphanum_set_digit
-    //% block = "Set a numberic digit at $position"
+    //% block="set digit %digit at %position"
     //% position.min=0 position.max=3
-    export function set_digit(position: number, digit: number): void {
+    export function set_digit(digit: number, position: number): void {
         write_raw(position, digits[digit])
     }
 }
