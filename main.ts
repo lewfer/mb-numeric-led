@@ -25,14 +25,14 @@ namespace segment_led {
     /**
      * Segment LED Display
      */
-    //% blockId=initialise_set_i2c_address
+    //% blockId=set_i2c_address
     //% block="set i2c address %i2cAddress"
     export function set_i2c_address(i2cAddress: number): void {
         usedi2cAddress = i2cAddress
     }
 
     //% blockId=initialise led_display
-    //% block="initialse led display"
+    //% block="initialise led display"
     export function initialise_led_display(): void {
 
         // Init
