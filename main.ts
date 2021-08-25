@@ -50,7 +50,7 @@ namespace numeric_led {
         // Brightness
         pins.i2cWriteNumber(
             usedi2cAddress,
-            HT16K33_CMD_BRIGHTNESS | 0,
+            HT16K33_CMD_BRIGHTNESS | 15,
             NumberFormat.UInt8LE,
             false
         )

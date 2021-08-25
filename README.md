@@ -29,3 +29,5 @@ This image may take a few minutes to refresh.
 
 ![A rendered view of the blocks](numeric-blocks.png)
 
+## Notes
+Currently does not support setting the decimal point or colon.
