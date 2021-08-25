@@ -29,7 +29,7 @@ namespace numeric_led {
         usedi2cAddress = i2cAddress
     }
 
-    //% blockId=initialise led_display
+    //% blockId=initialise_numeric_led
     //% block="initialise numeric led"
     export function initialise_numeric_led(): void {
 
@@ -59,7 +59,7 @@ namespace numeric_led {
     /**
      * Write raw bits to turn on individual segments
      */
-    //% blockId=alphanum_write_raw
+    //% blockId=write_raw
     //% block="write raw %bitmask at %position"
     //% position.min=0 position.max=3
     function write_raw(bitmask: number, position: number): void {
@@ -68,13 +68,13 @@ namespace numeric_led {
         buffer[1 + (offset+position) * 2 + 1] = (bitmask >> 8) & 0xff
     }
 
-    //% blockId=alphanum_update_display
+    //% blockId=update_display
     //% block="update display"
     export function update_display(): void {
         pins.i2cWriteBuffer(usedi2cAddress, buffer, false)
     }
 
-    //% blockId=alphanum_clear_display
+    //% blockId=clear_display
     //% block="clear display"
     export function clear_display(): void {
         for (let index = 0; index <= 16; index++) {
@@ -82,7 +82,7 @@ namespace numeric_led {
         }
     }
 
-    //% blockId=alphanum_set_string
+    //% blockId=set_number
     //% block="set number %value"
     export function set_number(value: number): void {
         let str = value.toString()
@@ -93,7 +93,7 @@ namespace numeric_led {
         pins.i2cWriteBuffer(usedi2cAddress, buffer, false)
     }
 
-    //% blockId=alphanum_set_digit
+    //% blockId=set_digit
     //% block="set digit %digit at %position"
     //% position.min=0 position.max=3
     export function set_digit(digit: number, position: number): void {
