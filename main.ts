@@ -1,7 +1,7 @@
 /**
- * Controls the Adafruit Alphanumeric display
+ * Controls the Adafruit 7-segment and 14-segment numeric/character led displays
  */
-//% color="#dc4a26" icon="\uf06e"
+//% color="coral" icon="\uf06e"
 namespace alphanum {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
@@ -20,9 +20,10 @@ namespace alphanum {
 
     let chars: { [key: string]: number } = { ' ': 0, '!': 6, '"': 544, '#': 4814, '$': 4845, '%': 3108, '&': 9053, "'": 1024, '(': 9216, ')': 2304, '*': 16320, '+': 4800, ',': 2048, '-': 192, '.': 0, '/': 3072, '0': 3135, '1': 6, '2': 219, '3': 143, '4': 230, '5': 8297, '6': 253, '7': 7, '8': 255, '9': 239, ':': 4608, ';': 2560, '<': 9216, '=': 200, '>': 2304, '?': 4227, '@': 699, 'A': 247, 'B': 4751, 'C': 57, 'D': 4623, 'E': 249, 'F': 113, 'G': 189, 'H': 246, 'I': 4608, 'J': 30, 'K': 9328, 'L': 56, 'M': 1334, 'N': 8502, 'O': 63, 'P': 243, 'Q': 8255, 'R': 8435, 'S': 237, 'T': 4609, 'U': 62, 'V': 3120, 'W': 10294, 'X': 11520, 'Y': 5376, 'Z': 3081, '[': 57, '\\': 8448, ']': 15, '^': 3075, '_': 8, '`': 256, 'a': 4184, 'b': 8312, 'c': 216, 'd': 2190, 'e': 2136, 'f': 113, 'g': 1166, 'h': 4208, 'i': 4096, 'j': 14, 'k': 13824, 'l': 48, 'm': 4308, 'n': 4176, 'o': 220, 'p': 368, 'q': 1158, 'r': 80, 's': 8328, 't': 120, 'u': 28, 'v': 8196, 'w': 10260, 'x': 10432, 'y': 8204, 'z': 2120, '{': 2377, '|': 4608, '}': 9353, '~': 1312 };
 
+    let digits: { [key: string]: number } = { ' ': 0, '-': 64, '0': 63, '1': 6, '2': 91, '3': 79, '4': 102, '5': 109, '6': 125, '7': 7, '8': 127, '9': 111, 'A': 119, 'B': 124, 'C': 57, 'D': 94, 'E': 121, 'F': 113 };
 
     /**
-     * Alphanumeric LED Display
+     * Segment LED Display
      */
     //% blockId=initialise_set_i2c_address
     //% block = "Set the i2c address"
@@ -30,9 +31,9 @@ namespace alphanum {
         usedi2cAddress = i2cAddress
     }
 
-    //% blockId=initialise_alphanumeric
+    //% blockId=initialise led_display
     //% block = "Initialse the display"
-    export function initialise_alphanumeric(): void {
+    export function initialise_led_display(): void {
 
         // Init
         pins.i2cWriteNumber(
@@ -97,5 +98,12 @@ namespace alphanum {
         write_raw(2, chars[character.charAt(2)])
         write_raw(3, chars[character.charAt(3)])
 
+    }
+
+    //% blockId=alphanum_set_digit
+    //% block = "Set a numberic digit at $position"
+    //% position.min=0 position.max=3
+    export function set_digit(position: number, digit: number): void {
+        write_raw(position, digits[digit])
     }
 }
