@@ -90,7 +90,7 @@ namespace numeric_led {
         write_raw(digits[str.charAt(1)], 1)
         write_raw(digits[str.charAt(2)], 2)
         write_raw(digits[str.charAt(3)], 3)
-
+        pins.i2cWriteBuffer(usedi2cAddress, buffer, false)
     }
 
     //% blockId=alphanum_set_digit
