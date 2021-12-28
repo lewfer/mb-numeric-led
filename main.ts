@@ -23,9 +23,9 @@ namespace numeric_led {
     /**
      * Segment LED Display
      */
-    //% blockId=set_i2c_address
-    //% block="set i2c address %i2cAddress"
-    export function set_i2c_address(i2cAddress: number): void {
+    //% blockId=set_display_i2c_address
+    //% block="set display i2c address %i2cAddress"
+    export function set_display_i2c_address(i2cAddress: number): void {
         usedi2cAddress = i2cAddress
     }
 
@@ -82,9 +82,9 @@ namespace numeric_led {
         }
     }
 
-    //% blockId=set_number
-    //% block="set number %value"
-    export function set_number(value: number): void {
+    //% blockId=display_number
+    //% block="display number %value"
+    export function display_number(value: number): void {
         let str = value.toString()
         write_raw(digits[str.charAt(0)], 0)
         write_raw(digits[str.charAt(1)], 1)
@@ -93,10 +93,10 @@ namespace numeric_led {
         pins.i2cWriteBuffer(usedi2cAddress, buffer, false)
     }
 
-    //% blockId=set_digit
-    //% block="set digit %digit at %position"
+    //% blockId=display_digit
+    //% block="display digit %digit at %position"
     //% position.min=0 position.max=3
-    export function set_digit(digit: number, position: number): void {
+    export function display_digit(digit: number, position: number): void {
         write_raw(digits[digit], position)
     }
 }
