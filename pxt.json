@@ -1,5 +1,5 @@
 {
-    "name": "tcl-mb-segment-led-display",
+    "name": "microbit-numberic-display",
     "description": "",
     "dependencies": {
         "core": "*",
