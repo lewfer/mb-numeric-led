@@ -1,5 +1,5 @@
 {
-    "name": "microbit-numberic-display",
+    "name": "microbit-numeric-display",
     "description": "",
     "dependencies": {
         "core": "*",
