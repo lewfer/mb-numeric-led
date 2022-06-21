@@ -1,7 +1,3 @@
-/**
- * Controls the Adafruit 7-segment numeric led display
- */
-//% color="#ff7f50" icon="\uf06e" block="Numeric LED"
 namespace numeric_led {
     let DEFAULT_ADDRESS = 0x70;
     let HT16K33_BLINK_CMD = 0x80
@@ -16,7 +12,7 @@ namespace numeric_led {
 
     let usedi2cAddress: number = DEFAULT_ADDRESS;
 
-    let buffer = pins.createBuffer(17);
+    let buffer = pins.createBuffer(16);
 
     let digits: { [key: string]: number } = { ' ': 0, '-': 64, '0': 63, '1': 6, '2': 91, '3': 79, '4': 102, '5': 109, '6': 125, '7': 7, '8': 127, '9': 111, 'A': 119, 'B': 124, 'C': 57, 'D': 94, 'E': 121, 'F': 113 };
 
@@ -86,6 +82,8 @@ namespace numeric_led {
     //% block="display number %value"
     export function display_number(value: number): void {
         let str = value.toString()
+        while (str.length < 4)
+            str = ' ' + str;
         write_raw(digits[str.charAt(0)], 0)
         write_raw(digits[str.charAt(1)], 1)
         write_raw(digits[str.charAt(2)], 2)
