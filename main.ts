@@ -13,6 +13,7 @@ namespace numeric_led {
     let HT16K33_SYSTEM_SETUP = 0x20
     let HT16K33_OSCILLATOR = 0x01
     let HT16K33_CMD_BRIGHTNESS = 0xE0
+    
 
     let usedi2cAddress: number = DEFAULT_ADDRESS;
 
