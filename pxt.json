@@ -1,5 +1,5 @@
 {
-    "name": "microbit-numeric-display",
+    "name": "Think Create Learn Nmeric LED",
     "description": "",
     "dependencies": {
         "core": "*",
