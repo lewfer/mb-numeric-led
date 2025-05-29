@@ -1,10 +1,8 @@
 {
-    "name": "Think Create Learn Nmeric LED",
+    "name": "Think Create Learn Numeric LED",
     "description": "",
     "dependencies": {
-        "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "core": "*"
     },
     "files": [
         "main.blocks",
@@ -15,7 +13,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "5.0.6",
+        "target": "7.0.61",
         "targetId": "microbit"
     },
     "supportedTargets": [
