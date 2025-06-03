@@ -2,7 +2,9 @@
     "name": "Think Create Learn Numeric LED",
     "description": "",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
     },
     "files": [
         "main.blocks",
